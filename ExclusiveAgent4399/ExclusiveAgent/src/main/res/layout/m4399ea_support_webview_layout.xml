@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
+
+    <include layout="@layout/m4399ea_support_progress_bar_h" />
+
+    <WebView
+        android:id="@+id/m4399ea_support_webview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/m4399ea_support_smooth_progress_bar"
+        android:scrollbars="none" />
+
+    <ViewStub
+        android:id="@+id/m4399ea_support_webview_stub_inside_nav"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/m4399ea_support_activity_title_height"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/m4399ea_support_dialog_spacing_h"
+        android:layout_marginLeft="@dimen/m4399ea_support_dialog_spacing_h"
+        android:layout="@layout/m4399ea_support_webview_nav_inside"
+        tools:visibility="visible" />
+
+</RelativeLayout>

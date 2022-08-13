@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="1"
+    tools:layout_height="45dp"
+    tools:layout_width="152dp">
+
+    <TextView
+        android:id="@id/m4399ea_support_id_tv_positive"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/m4399ea_support_dialog_btn_positive_bg"
+        android:gravity="center"
+        android:textColor="#666666"
+        android:textSize="@dimen/m4399ea_support_font_16"
+        tools:text="@string/m4399ea_support_action_goon" />
+
+    <ImageView
+        android:id="@id/m4399ea_support_id_iv_cpb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:scaleType="fitXY"
+        tools:ignore="ContentDescription" />
+
+</RelativeLayout>

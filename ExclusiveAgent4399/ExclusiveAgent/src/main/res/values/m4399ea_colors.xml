@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="m4399ea_white_ffffff">#ffffff</color>
+    <color name="m4399ea_white_dddddd">#dddddd</color>
+    <color name="m4399ea_green_4ca733">#4ca733</color>
+    <color name="m4399ea_green_54ba3d">#54ba3d</color>
+    <color name="m4399ea_black_bbbbbb">#bbbbbb</color>
+    <color name="m4399ea_black_666666">#666666</color>
+    <color name="m4399ea_black_333333">#333333</color>
+    <color name="m4399ea_red_33ffa92d">#33ffa92d</color>
+    <color name="m4399ea_red_1affa92d">#1affa92d</color>
+    <color name="m4399ea_red_ffa92d">#ffa92d</color>
+</resources>

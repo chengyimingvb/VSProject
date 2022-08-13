@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:shrinkMode="safe"
+    tools:keep="@id/m4399ea*,@anim/m4399ea*,@drawable/m4399ea*,@layout/m4399ea*,@dimen/m4399ea*,@integer/m4399ea*,@color/m4399ea*,@array/m4399ea*,@string/m4399ea*,@style/m4399ea*,@xml/network_security_config">
+</resources>

@@ -1,0 +1,16 @@
+<project outputDir="D:\GitWork\NationalwarHegemony\Assets\CYMUni\Plugins\CYM\DLL" baseDir="D:\GitWork\VSProject\CYMEditor\bin\Release" xmlns="http://confuser.codeplex.com">
+  <module path="CYMCore.dll">
+    <rule pattern="true" inherit="false">
+      <protection id="anti ildasm" />
+      <protection id="ref proxy" />
+      <protection id="ctrl flow" />
+    </rule>
+  </module>
+  <module path="CYMEditor.dll">
+    <rule pattern="true" inherit="false">
+      <protection id="anti ildasm" />
+      <protection id="ctrl flow" />
+      <protection id="ref proxy" />
+    </rule>
+  </module>
+</project>

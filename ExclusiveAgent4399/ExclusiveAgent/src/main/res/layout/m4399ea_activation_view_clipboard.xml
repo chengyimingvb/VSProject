@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/m4399ea_id_clipboard_text"
+        android:layout_width="160dp"
+        android:layout_height="42dp"
+        android:layout_gravity="end|bottom"
+        android:background="@drawable/m4399ea_activation_9patch_paste_bg"
+        android:ellipsize="end"
+        android:paddingLeft="12dp"
+        android:paddingTop="8dp"
+        android:paddingRight="12dp"
+        android:singleLine="true"
+        android:text="@string/m4399ea_activation_clipboard_go"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
+</LinearLayout>

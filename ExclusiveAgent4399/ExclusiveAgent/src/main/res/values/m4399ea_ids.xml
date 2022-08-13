@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- 激活弹窗资源ID -->
+    <item name="m4399ea_activation_id_tv_dialog_title" type="id"/>
+    <item name="m4399ea_activation_id_edt_dialog_input" type="id"/>
+    <item name="m4399ea_activation_id_btn_dialog_positive" type="id"/>
+    <item name="m4399ea_activation_id_btn_dialog_negative" type="id"/>
+    <item name="m4399ea_activation_id_tv_dialog_positive_text" type="id"/>
+    <item name="m4399ea_activation_id_tv_dialog_negative_text" type="id"/>
+    <item name="m4399ea_activation_install_game_box_id_tv_dialog_title" type="id"/>
+    <item name="m4399ea_activation_install_game_box_id_btn_dialog_positive" type="id"/>
+    <item name="m4399ea_activation_install_game_box_id_tv_dialog_confirm" type="id"/>
+
+    <!-- 更新弹窗资源ID -->
+    <item name="m4399ea_upgrade_id_tv_dialog_title" type="id"/>
+    <item name="m4399ea_upgrade_id_tv_dialog_content" type="id"/>
+    <item name="m4399ea_upgrade_id_btn_dialog_positive" type="id"/>
+    <item name="m4399ea_upgrade_id_tv_dialog_positive_text" type="id"/>
+
+</resources>

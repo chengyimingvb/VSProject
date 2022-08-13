@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- dp -->
+    <dimen name="m4399ea_0dp">0dp</dimen>
+    <dimen name="m4399ea_2dp">2dp</dimen>
+    <dimen name="m4399ea_4dp">4dp</dimen>
+    <dimen name="m4399ea_5dp">5dp</dimen>
+    <dimen name="m4399ea_10dp">10dp</dimen>
+    <dimen name="m4399ea_15dp">15dp</dimen>
+    <dimen name="m4399ea_20dp">20dp</dimen>
+    <dimen name="m4399ea_27dp">27dp</dimen>
+    <dimen name="m4399ea_28dp">28dp</dimen>
+    <dimen name="m4399ea_36dp">36dp</dimen>
+    <dimen name="m4399ea_100dp">100dp</dimen>
+    <dimen name="m4399ea_304dp">304dp</dimen>
+
+    <!-- sp -->
+    <dimen name="m4399ea_12sp">12sp</dimen>
+    <dimen name="m4399ea_14sp">14sp</dimen>
+    <dimen name="m4399ea_16sp">16sp</dimen>
+</resources>

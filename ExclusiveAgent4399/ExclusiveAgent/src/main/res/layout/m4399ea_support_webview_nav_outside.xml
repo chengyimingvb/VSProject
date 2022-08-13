@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@id/m4399ea_support_navigation_bar"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/m4399ea_support_activity_title_height"
+    android:background="@android:color/white"
+    android:gravity="center_vertical">
+
+    <!-- 注意 padding 和 margin 要等于 m4399_activity_padding_h -->
+    <ImageView
+        android:id="@id/m4399ea_support_nav_return"
+        style="@style/m4399ea.support.Nav.Icon"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginLeft="6dp"
+        android:src="@drawable/m4399ea_support_ic_left_arrow"
+        tools:ignore="contentDescription"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@id/m4399ea_support_nav_close"
+        style="@style/m4399ea.support.Nav.Icon"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@id/m4399ea_support_nav_return"
+        android:layout_toRightOf="@id/m4399ea_support_nav_return"
+        android:src="@drawable/m4399ea_support_ic_close"
+        android:visibility="gone"
+        tools:ignore="contentDescription"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@id/m4399ea_support_nav_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_toEndOf="@id/m4399ea_support_nav_close"
+        android:layout_toRightOf="@id/m4399ea_support_nav_close"
+        android:gravity="center_vertical"
+        android:includeFontPadding="false"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/m4399ea_support_activity_title_text_size"
+        tools:ignore="RelativeOverlap"
+        tools:text="@string/m4399ea_support_action_return" />
+
+    <!-- 注意 padding 和 margin 要等于 m4399_activity_padding_h -->
+    <ViewStub
+        android:id="@id/m4399ea_support_nav_tools_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"
+        tools:layout="@layout/m4399ea_support_nav_tools_single_text" />
+</RelativeLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--初始化配置-->
+    <string name="m4399ea_init_loading">加载中</string>
+    <string name="m4399ea_init_dialog_title">初始化失败，请退出重试</string>
+    <string name="m4399ea_init_dialog_confirm">重试</string>
+    <string name="m4399ea_invalid_mode">无效模式</string>
+
+    <!--激活码功能-->
+    <string name="m4399ea_activation_dialog_title">激活码</string>
+    <string name="m4399ea_activation_tip_code">激活码</string>
+    <string name="m4399ea_activation_confirm">确认激活</string>
+    <string name="m4399ea_activation_negative">没有激活码？前往4399游戏盒获取</string>
+    <string name="m4399ea_activation_negative_suffix">></string>
+    <string name="m4399ea_activation_hint">请输入激活码</string>
+    <string name="m4399ea_activation_empty">激活码不能为空</string>
+    <string name="m4399ea_activation_invalid">激活码无效</string>
+    <string name="m4399ea_activation_msg_instructions">您需要用激活码激活本游戏，激活码可在4399游戏盒APP中获取</string>
+    <string name="m4399ea_activation_error">当前网络环境差，激活失败</string>
+    <string name="m4399ea_activation_launch_error">启动游戏盒失败，请更新游戏盒版本之后重试</string>
+    <string name="m4399ea_activation_clipboard_go">粘贴激活码:</string>
+    <string name="m4399ea_activation_type_unknown">请更新激活SDK到最新版本!</string>
+    <string name="m4399ea_activation_working">已激活过</string>
+    <string name="m4399ea_activation_success">激活成功</string>
+    <string name="m4399ea_activation_disabled">激活禁用</string>
+    <string name="m4399ea_activation_install_game_box_dialog_title">此款游戏为4399游戏盒独家代理发布，请前往安装游戏盒！</string>
+    <string name="m4399ea_activation_install_game_box_dialog_confirm">前往</string>
+    <!-- 更新功能 -->
+    <string name="m4399ea_upgrade_dialog_title">新版本!</string>
+    <string name="m4399ea_upgrade_dialog_content">检测到游戏有新版本,请前往4399游戏盒更新后继续游戏！</string>
+    <string name="m4399ea_upgrade_dialog_confirm">前往</string>
+
+    <!-- 活动功能 -->
+    <string name="m4399ea_activity_disabled">活动禁用</string>
+    <string name="m4399ea_activity_not_has">没有活动</string>
+
+    <!-- 礼包功能 -->
+    <string name="m4399ea_gift_disabled">礼包禁用</string>
+    <string name="m4399ea_gift_not_has">没有礼包</string>
+
+    <!-- 游戏圈 -->
+    <string name="m4399ea_hub_error">游戏盒下载中!</string>
+    <string name="m4399ea_hub_dialog_content">游戏盒未安装，是否安装?</string>
+    <string name="m4399ea_hub_dialog_confirm">安装</string>
+    <string name="m4399ea_hub_dialog_cancel">取消</string>
+
+</resources>

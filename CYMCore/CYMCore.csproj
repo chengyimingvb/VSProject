@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{88C7D5CD-6928-4C8A-8FDF-3D17D13C5FE3}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CYMCore</RootNamespace>
+    <AssemblyName>CYMCore</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\CYMEditor\bin\Release\</OutputPath>
+    <DefineConstants>TRACE;UNITY_EDITOR</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Sirenix.OdinInspector.Attributes">
+      <HintPath>packages\Sirenix\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.OdinInspector.Editor">
+      <HintPath>packages\Sirenix\Sirenix.OdinInspector.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization">
+      <HintPath>packages\Sirenix\Sirenix.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Serialization.Config">
+      <HintPath>packages\Sirenix\Sirenix.Serialization.Config.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Utilities">
+      <HintPath>packages\Sirenix\Sirenix.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Sirenix.Utilities.Editor">
+      <HintPath>packages\Sirenix\Sirenix.Utilities.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Unity3D.UnityEngine.2018.3.5.1\lib\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Core\Collection\Array.cs" />
+    <Compile Include="Core\Collection\ListDic.cs" />
+    <Compile Include="Core\Collection\DiffData.cs" />
+    <Compile Include="Core\Collection\RangeDic.cs" />
+    <Compile Include="Core\Collection\BetterList.cs" />
+    <Compile Include="Core\Collection\ResourcesObj.cs" />
+    <Compile Include="Core\Collection\IDDicList.cs" />
+    <Compile Include="Core\Collection\DulDic.cs" />
+    <Compile Include="Core\Collection\Formation2D.cs" />
+    <Compile Include="Core\Collection\HashList.cs" />
+    <Compile Include="Core\Collection\IDDic.cs" />
+    <Compile Include="Core\Collection\ListSorter.cs" />
+    <Compile Include="Core\Collection\MultiDic.cs" />
+    <Compile Include="Core\Collection\ObjDic.cs" />
+    <Compile Include="Core\Collection\ObjectRegister.cs" />
+    <Compile Include="Core\Collection\OrderDic.cs" />
+    <Compile Include="Core\Collection\PriorityQueue.cs" />
+    <Compile Include="Core\Collection\ReadOnlyDic.cs" />
+    <Compile Include="Core\Collection\SafeDic.cs" />
+    <Compile Include="Core\Collection\SerializableDic.cs" />
+    <Compile Include="Core\Collection\SimpleObjPool.cs" />
+    <Compile Include="Core\Collection\SmallList.cs" />
+    <Compile Include="Core\Config\BuildConfig.cs" />
+    <Compile Include="Core\Config\CursorConfig.cs" />
+    <Compile Include="Core\Config\DLCConfig.cs" />
+    <Compile Include="Core\Config\LocalConfig.cs" />
+    <Compile Include="Core\Config\LogConfig.cs" />
+    <Compile Include="Core\Config\ScriptableObjectConfig.cs" />
+    <Compile Include="Core\Config\SpriteConfig.cs" />
+    <Compile Include="Core\Config\UIConfig.cs" />
+    <Compile Include="Core\Extend\ConfigCopy.cs" />
+    <Compile Include="Core\Extend\Misc.cs" />
+    <Compile Include="Core\Extend\Stopwatch.cs" />
+    <Compile Include="Core\Main\Attribute.cs" />
+    <Compile Include="Core\Collection\TypeDic.cs" />
+    <Compile Include="Core\Main\DLCItem.cs" />
+    <Compile Include="Core\Main\Enum.cs" />
+    <Compile Include="Core\Extend\AsyncWebRequest.cs" />
+    <Compile Include="Core\Extend\BinData.cs" />
+    <Compile Include="Core\Extend\BoolState.cs" />
+    <Compile Include="Core\Extend\CD.cs" />
+    <Compile Include="Core\Extend\CDUpdater.cs" />
+    <Compile Include="Core\Main\CopyRight.cs" />
+    <Compile Include="Core\Extend\CMail.cs" />
+    <Compile Include="Core\Extend\DBCopy.cs" />
+    <Compile Include="Core\Extend\Delay.cs" />
+    <Compile Include="Core\Extend\DirtyAction.cs" />
+    <Compile Include="Core\Extend\Enum.cs" />
+    <Compile Include="Core\Extend\FrameTimer.cs" />
+    <Compile Include="Core\Extend\ListIndexer.cs" />
+    <Compile Include="Core\Extend\CLog.cs" />
+    <Compile Include="Core\Extend\Numeric.cs" />
+    <Compile Include="Core\Extend\StrHash.cs" />
+    <Compile Include="Core\Extend\Timing.cs" />
+    <Compile Include="Core\Extension\ExtensionBitmap.cs" />
+    <Compile Include="Core\Extension\ExtensionNormal.cs" />
+    <Compile Include="Core\Extension\ExtensionNumber.cs" />
+    <Compile Include="Core\Extend\FileAttachment.cs" />
+    <Compile Include="Core\Extend\IndexState.cs" />
+    <Compile Include="Core\Main\Error.cs" />
+    <Compile Include="Core\Main\Extension.cs" />
+    <Compile Include="Core\Extension\ExtensionType.cs" />
+    <Compile Include="Core\Main\Interface.cs" />
+    <Compile Include="Core\Extend\LayerData.cs" />
+    <Compile Include="Core\Main\BaseMono.cs" />
+    <Compile Include="Core\Extend\MonoSingleton.cs" />
+    <Compile Include="Core\Extend\OverlapValueMgr.cs" />
+    <Compile Include="Core\Extend\Performance.cs" />
+    <Compile Include="Core\Extend\PositionData.cs" />
+    <Compile Include="Core\Extend\Proportion.cs" />
+    <Compile Include="Core\Extend\Singleton.cs" />
+    <Compile Include="Core\Extend\TextureColorData.cs" />
+    <Compile Include="Core\Extend\Triger.cs" />
+    <Compile Include="Core\Extend\EventMgr.cs" />
+    <Compile Include="Core\Scheduler\QueueHub.cs" />
+    <Compile Include="Core\Scheduler\Scheduler.cs" />
+    <Compile Include="Core\Main\SysConst.cs" />
+    <Compile Include="Core\Utils\BaseFileUtil.cs" />
+    <Compile Include="Core\Utils\BaseIDUtil.cs" />
+    <Compile Include="Core\Utils\BaseMarkdownUtil.cs" />
+    <Compile Include="Core\Utils\BaseMathUtil.cs" />
+    <Compile Include="Core\Utils\BaseRandUtil.cs" />
+    <Compile Include="Core\Utils\BaseUIUtil.cs" />
+    <Compile Include="Core\Utils\BaseUtil.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\Extend\Queue.cs" />
+    <Compile Include="Core\Extend\Range.cs" />
+    <Compile Include="Core\Extend\Timer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
