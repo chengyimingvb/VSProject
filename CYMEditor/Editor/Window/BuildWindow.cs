@@ -586,7 +586,7 @@ namespace CYM
         {
             if (curEnterBuildKey != buildKey)
             {
-                return false;
+                //return false;
             }
             return true;
         }
