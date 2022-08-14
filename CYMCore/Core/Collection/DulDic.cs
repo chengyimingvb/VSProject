@@ -6,6 +6,7 @@
 // TKey,TValue都可以用来索引,删除,查找
 //------------------------------------------------------------------------------
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -77,5 +78,7 @@ namespace CYM
             base.Clear();
             ValueKeys.Clear();
         }
+
+        public IList ToList()=> new List<KeyValuePair<TKey, TValue>>(this);
     }
 }

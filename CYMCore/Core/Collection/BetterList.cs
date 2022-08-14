@@ -3,6 +3,8 @@
 // Copyright © 2011-2016 Tasharen Entertainment
 //----------------------------------------------
 
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
@@ -27,7 +29,7 @@ using UnityEngine;
 namespace CYM
 {
     [Unobfus]
-    public class BetterList<T>
+    public class BetterList<T>:IList
     {
         /// <summary>
         /// Direct access to the buffer. Note that you should not use its 'Length' parameter, but instead use BetterList.size.
@@ -40,6 +42,18 @@ namespace CYM
         /// </summary>
 
         public int Size { get; private set; } = 0;
+
+        bool IList.IsReadOnly => false;
+
+        bool IList.IsFixedSize => false;
+
+        int ICollection.Count => Size;
+
+        object ICollection.SyncRoot => false;
+
+        bool ICollection.IsSynchronized => false;
+
+        object IList.this[int index] { get => buffer[index]; set => buffer[index] = (T)value; }
 
         public BetterList()
         {
@@ -307,6 +321,48 @@ namespace CYM
                         // Nothing has changed -- we can start here next time
                         start = (i == 0) ? 0 : i - 1;
                     }
+                }
+            }
+        }
+
+        int IList.Add(object value)
+        {
+            this.Add((T)value);
+            return 0;
+        }
+
+        bool IList.Contains(object value)
+        {
+            return this.Contains((T)value);
+        }
+
+        int IList.IndexOf(object value)
+        {
+            return this.IndexOf((T)value);
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            this.Insert(index,(T)value);
+        }
+
+        void IList.Remove(object value)
+        {
+            this.Remove((T)value);
+        }
+
+        void ICollection.CopyTo(Array array, int index)
+        {
+            throw new NotImplementedException();
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            if (buffer != null)
+            {
+                for (int i = 0; i < Size; ++i)
+                {
+                    yield return buffer[i];
                 }
             }
         }

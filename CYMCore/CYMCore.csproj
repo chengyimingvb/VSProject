@@ -129,7 +129,7 @@
     <Compile Include="Core\Extend\FileAttachment.cs" />
     <Compile Include="Core\Extend\IndexState.cs" />
     <Compile Include="Core\Main\Error.cs" />
-    <Compile Include="Core\Main\Extension.cs" />
+    <Compile Include="Core\Extension\Extension.cs" />
     <Compile Include="Core\Extension\ExtensionType.cs" />
     <Compile Include="Core\Main\Interface.cs" />
     <Compile Include="Core\Extend\LayerData.cs" />

@@ -62,6 +62,7 @@ namespace CYM
         #endregion
 
         #region STR
+        public const string STR_Line = "-----------------";
         public const string STR_DBTempSaveName = "TempSave";
         public const string STR_LuaTemplate = "Template";
         public const string STR_Infinite = "∞";

@@ -6,6 +6,7 @@
 // 填写类的描述...
 //------------------------------------------------------------------------------
 
+using System.Collections;
 using System.Collections.Generic;
 
 namespace CYM
@@ -81,5 +82,7 @@ namespace CYM
         {
             return data.Dics;
         }
+
+        public IList ToList() => new List<KeyValuePair<TKey, TValue>>(Dics);
     }
 }

@@ -5,6 +5,7 @@
 // Owner: CYM
 // 填写类的描述...
 //------------------------------------------------------------------------------
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -53,6 +54,9 @@ namespace CYM
         {
             base.Clear();
         }
+
+
+        public IList ToList() => new List<KeyValuePair<K, T>>(this);
     }
     #endregion
 

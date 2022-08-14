@@ -146,9 +146,9 @@ namespace CYM
 
         private static object _tmpRef;
         private static int _tmpInt;
-        private static bool _tmpBool;
+        //private static bool _tmpBool;
         private static Segment _tmpSegment;
-        private static CoroutineHandle _tmpHandle;
+        //private static CoroutineHandle _tmpHandle;
 
         private int _currentUpdateFrame;
         private int _currentLateUpdateFrame;
@@ -181,14 +181,14 @@ namespace CYM
         private float _lastSlowUpdateTime;
         private float _lastRealtimeUpdateTime;
 #if UNITY_EDITOR
-        private float _lastEditorUpdateTime;
-        private float _lastEditorSlowUpdateTime;
+        //private float _lastEditorUpdateTime;
+        //private float _lastEditorSlowUpdateTime;
 #endif
         private float _lastEndOfFrameTime;
         private float _lastManualTimeframeTime;
         private float _lastSlowUpdateDeltaTime;
-        private float _lastEditorUpdateDeltaTime;
-        private float _lastEditorSlowUpdateDeltaTime;
+        //private float _lastEditorUpdateDeltaTime;
+        //private float _lastEditorSlowUpdateDeltaTime;
         private float _lastManualTimeframeDeltaTime;
         private ushort _framesSinceUpdate;
         private ushort _expansions = 1;

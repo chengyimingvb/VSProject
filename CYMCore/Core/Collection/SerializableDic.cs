@@ -1,5 +1,6 @@
 //Based of the following thread https://forum.unity.com/threads/finally-a-serializable-dictionary-for-unity-extracted-from-system-collections-generic.335797/
 
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -474,6 +475,8 @@ namespace CYM
         }
 
         #endregion
+
+        public IList ToList() => new List<KeyValuePair<TKey, TValue>>(_dict);
 
     }
 }

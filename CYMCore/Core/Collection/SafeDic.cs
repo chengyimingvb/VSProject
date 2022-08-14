@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 // <summary>
 // 访问更加安全的Dictionary
 // SafeDic.cs
@@ -33,5 +34,7 @@ namespace CYM
                 }
             }
         }
+
+        public IList ToList() => new List<KeyValuePair<T, V>>(this);
     }
 }

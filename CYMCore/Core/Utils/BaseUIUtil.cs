@@ -106,43 +106,43 @@ namespace CYM
         #endregion
 
         #region Digital
-        public static string OneD(float? f, bool isOption = false)
+        public static string D1(float? f, bool isOption = false)
         {
             return OneDFormat();
             string OneDFormat() => isOption ? string.Format("{0:0.#}", f.HasValue ? f : 0) : string.Format("{0:0.0}", f);
         }
-        public static string TwoD(float? f, bool isOption = false)
+        public static string D2(float? f, bool isOption = false)
         {
             return TwoDFormat();
             string TwoDFormat() => isOption ? string.Format("{0:0.##}", f) : string.Format("{0:0.00}", f);
         }
-        public static string TwoDS(float? f)
+        public static string DS2(float? f)
         {
             string sign = GetSign(f);
             return string.Format("{1}{0:0.00}", f, sign);
         }
-        public static string TwoDC(float? f, bool isReverseCol = false)
+        public static string DC2(float? f, bool isReverseCol = false)
         {
             string color = GetColor(f, isReverseCol);
             return string.Format("<color={0}>{1:0.00}</color>", color, f);
         }
-        public static string TwoDCS(float? f, bool isReverseCol = false)
+        public static string DCS2(float? f, bool isReverseCol = false)
         {
             string sign = GetSign(f);
             string color = GetColor(f, isReverseCol);
             return string.Format("<color={0}>{1}{2:0.00}</color>", color, sign, f);
         }
-        public static string OneDS(float? f)
+        public static string DS1(float? f)
         {
             string sign = GetSign(f);
             return string.Format("{1}{0:0.0}", f, sign);
         }
-        public static string OneDC(float? f, bool isReverseCol = false)
+        public static string DC1(float? f, bool isReverseCol = false)
         {
             string color = GetColor(f, isReverseCol);
             return string.Format("<color={0}>{1:0.0}</color>", color, f);
         }
-        public static string OneDCS(float? f, bool isReverseCol = false)
+        public static string DCS1(float? f, bool isReverseCol = false)
         {
             string sign = GetSign(f);
             string color = GetColor(f, isReverseCol);
@@ -155,7 +155,7 @@ namespace CYM
         {
             if (number == null) return "";
             float f = GetNumber(number.Value);
-            return ((int)f) +  GetSuffix(number.Value);//ValidDigit(f, 2) + GetSuffix((int)number);
+            return ((int)f) +  GetSuffix(number.Value);
 
             float GetNumber(float num)
             {
@@ -212,13 +212,6 @@ namespace CYM
                 }
                 return "";
             }
-            //string ValidDigit(float val, int digit)
-            //{
-            //    if (digit <= 0) throw new ArgumentOutOfRangeException();
-            //    string e = string.Format("{0:e" + (digit - 1) + "}", val);
-            //    float fd = float.Parse(e);
-            //    return fd.ToString();
-            //}
         }
         public static string KMGC(float? number, bool reverseColor = false, KMGType type = KMGType.TenK)
         {
@@ -253,7 +246,7 @@ namespace CYM
         public static string Per(float? percent)
         {
             if (percent == null) return "";
-            return string.Format("{0}%", OneD(percent.Value * 100));
+            return string.Format("{0}%", D1(percent.Value * 100));
         }
         public static string PerS(float? percent)
         {
@@ -270,6 +263,29 @@ namespace CYM
             if (percent == null) return "";
             return WrapColorSign(Per(percent), percent, true, reverseColor);
         }
+        #endregion
+
+        #region UIColor
+        //国家颜色
+        public static string Nation(string name) => string.Format(ColorFormat, name, SysConst.COL_Yellow);
+        //城市颜色
+        public static string Castle(string name) => string.Format(ColorFormat, name, SysConst.COL_Green);
+        //宗教
+        public static string Religion(string name) => string.Format(ColorFormat, name, SysConst.COL_Yellow);
+        //贸易
+        public static string TradeRes(string name) => string.Format(ColorFormat, name, SysConst.COL_Grey);
+        //黄色
+        public static string Yellow(string name) => string.Format(ColorFormat, name, SysConst.COL_Yellow);
+        public static string Yellow(float number) => Yellow(number.ToString());
+        //红色
+        public static string Red(string name) => string.Format(ColorFormat, name, SysConst.COL_Red);
+        public static string Red(float number) => Red(number.ToString());
+        //绿色
+        public static string Green(string name) => string.Format(ColorFormat, name, SysConst.COL_Green);
+        public static string Green(float number) => Green(number);
+        //灰色
+        public static string Grey(string name) => string.Format(ColorFormat, name, SysConst.COL_Grey);
+        public static string Grey(float number) => Grey(number);
         #endregion
 
         #region UI Special
@@ -326,29 +342,6 @@ namespace CYM
             if (f > 1.0f) return Round(f);
             return string.Format("{0:0.0}", f);
         }
-        #endregion
-
-        #region UIColor
-        //国家颜色
-        public static string Nation(string name) => string.Format(ColorFormat, name, SysConst.COL_Yellow);
-        //城市颜色
-        public static string Castle(string name) => string.Format(ColorFormat, name, SysConst.COL_Green);
-        //宗教
-        public static string Religion(string name) => string.Format(ColorFormat, name, SysConst.COL_Yellow);
-        //贸易
-        public static string TradeRes(string name) => string.Format(ColorFormat, name, SysConst.COL_Grey);
-        //黄色
-        public static string Yellow(string name) => string.Format(ColorFormat, name, SysConst.COL_Yellow);
-        public static string Yellow(float number) => Yellow(number.ToString());
-        //红色
-        public static string Red(string name) => string.Format(ColorFormat, name, SysConst.COL_Red);
-        public static string Red(float number) => Red(number.ToString());
-        //绿色
-        public static string Green(string name) => string.Format(ColorFormat, name, SysConst.COL_Green);
-        public static string Green(float number) => Green(number);
-        //灰色
-        public static string Grey(string name) => string.Format(ColorFormat, name, SysConst.COL_Grey);
-        public static string Grey(float number) => Grey(number);
         #endregion
 
         #region Misc

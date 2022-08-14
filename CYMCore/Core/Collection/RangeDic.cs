@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 //**********************************************
@@ -45,6 +46,8 @@ namespace CYM
             }
             return new Tuple<T, int>(this.LastOrDefault().Key, 0);
         }
+
+        public IList ToList() => new List<KeyValuePair<T, Range>>(this);
 
     }
 }

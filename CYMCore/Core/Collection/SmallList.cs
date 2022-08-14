@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace CYM
 {
@@ -9,7 +10,7 @@ namespace CYM
     /// </summary>
     /// <typeparam name="T">The type of the list</typeparam>
     [Unobfus]
-    public class SmallList<T>
+    public class SmallList<T>:IList
     {
         /// <summary>
         /// internal storage of list data
@@ -20,6 +21,16 @@ namespace CYM
         /// The number of elements in the list
         /// </summary>
         public int Count { get; private set; } = 0;
+
+        bool IList.IsReadOnly => false;
+
+        bool IList.IsFixedSize => false;
+
+        object ICollection.SyncRoot => false;
+
+        bool ICollection.IsSynchronized => false;
+
+        object IList.this[int index] { get => data[index]; set => data[index] = (T)value; }
 
         /// <summary>
         /// Indexed access to the list items
@@ -214,6 +225,53 @@ namespace CYM
             }
 
             return false;
+        }
+
+        int IList.Add(object value)
+        {
+            this.Add((T)value);
+            return 0;
+        }
+
+        bool IList.Contains(object value)
+        {
+            return this.Contains((T)value);
+        }
+
+        int IList.IndexOf(object value)
+        {
+            return 0;
+        }
+
+        void IList.Insert(int index, object value)
+        {
+            this.Insert((T)value, index);
+        }
+
+        void IList.Remove(object value)
+        {
+            this.Remove((T)value);
+        }
+
+        void IList.RemoveAt(int index)
+        {
+            this.RemoveAt(index);
+        }
+
+        void ICollection.CopyTo(System.Array array, int index)
+        {
+            
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            if (data != null)
+            {
+                for (int i = 0; i < Count; ++i)
+                {
+                    yield return data[i];
+                }
+            }
         }
     }
 }

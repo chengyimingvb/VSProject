@@ -22,6 +22,8 @@ namespace CYM
         [SerializeField]
         public List<Texture2D> Press = new List<Texture2D>();
         [SerializeField]
+        public List<Texture2D> Unit = new List<Texture2D>();
+        [SerializeField]
         public Dictionary<string, List<Texture2D>> AnimCursor = new Dictionary<string, List<Texture2D>>();
         [SerializeField]
         public AudioClip PressSound;
