@@ -26,6 +26,7 @@ namespace CYM
             if (str == null) return true;
             return str == SysConst.STR_Inv || str == SysConst.STR_None || str == SysConst.STR_Unkown || str == string.Empty || str == "";
         }
+        public static bool IsValid(this string str) => !IsInv(str);
         public static bool IsInv(this Vector3 pos)
         {
             if (pos == SysConst.VEC_GlobalPos ||

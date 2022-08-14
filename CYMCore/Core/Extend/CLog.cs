@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace CYM
 {
-    public class CLog
+    public static class CLog
     {
         #region member variable
         const string TagNormal = "Normal";
