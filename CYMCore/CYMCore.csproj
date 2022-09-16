@@ -100,6 +100,7 @@
     <Compile Include="Core\Config\SpriteConfig.cs" />
     <Compile Include="Core\Config\UIConfig.cs" />
     <Compile Include="Core\Extend\ConfigCopy.cs" />
+    <Compile Include="Core\Extend\FrameTimer.cs" />
     <Compile Include="Core\Extend\Misc.cs" />
     <Compile Include="Core\Extend\Stopwatch.cs" />
     <Compile Include="Core\Main\Attribute.cs" />
@@ -117,7 +118,6 @@
     <Compile Include="Core\Extend\Delay.cs" />
     <Compile Include="Core\Extend\DirtyAction.cs" />
     <Compile Include="Core\Extend\Enum.cs" />
-    <Compile Include="Core\Extend\FrameTimer.cs" />
     <Compile Include="Core\Extend\ListIndexer.cs" />
     <Compile Include="Core\Extend\CLog.cs" />
     <Compile Include="Core\Extend\Numeric.cs" />

@@ -92,7 +92,6 @@ namespace CYM
         {
             OnPreBuild();
             _BuildBundle(dlc);
-            CopyDLCToEXE(dlc);
             OnPostBuild();
         }
         internal static void BuildBundleAndEXE(DLCItem dlc)
@@ -535,10 +534,9 @@ namespace CYM
         }
         static void OnPostBuild()
         {
+            #region 创建DLCHash
 
-        }
-        static void CopyDLCToEXE(DLCItem item)
-        {
+            #endregion
         }
         #endregion
 
