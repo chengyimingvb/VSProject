@@ -100,8 +100,6 @@ namespace CYM
         [FoldoutGroup("Resulution"), SerializeField]
         public int Height = 1080;
 
-        [FoldoutGroup("Fonts"),SerializeField]
-        public bool EnableSharpText = true;
         [FoldoutGroup("Fonts"), SerializeField]
         public FontStyleData DynamicFont;
         [FoldoutGroup("Fonts"), SerializeField]
