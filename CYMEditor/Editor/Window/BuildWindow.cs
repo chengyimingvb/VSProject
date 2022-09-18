@@ -35,7 +35,6 @@ namespace CYM
 
         #region prop
         static bool foldKey = false;
-        const string buildKey = "chenyimingshibaba";
         static string curEnterBuildKey = "";
         static GUIStyle TitleStyle = new GUIStyle(); 
         static BuildConfig BuildConfig => BuildConfig.Ins;
@@ -122,7 +121,7 @@ namespace CYM
             EditorGUILayout.BeginVertical(VerticalStyle);
             if (LocalConfig.Ins.FoldInfo = EditorGUILayout.Foldout(LocalConfig.Ins.FoldInfo, "Info", true))
             {
-                EditorGUILayout.LabelField(string.Format("作者:{0}", "陈宜明"));
+                EditorGUILayout.LabelField(string.Format("作者:{0}", "CYM"));
                 if (!BuildConfig.LastBuildTime.IsInv())
                     EditorGUILayout.LabelField("BuildTime:" + BuildConfig.LastBuildTime);
                 EditorGUILayout.LabelField(string.Format("版本号预览:{0}", BuildConfig));
@@ -573,8 +572,6 @@ namespace CYM
         }
         protected bool CheckEorr()
         {
-            //if (Ins == null)
-            //    return false;
             if (BuildConfig.IgnoreChecker)
                 return false;
 
@@ -584,10 +581,6 @@ namespace CYM
         }
         protected bool CheckKey()
         {
-            if (curEnterBuildKey != buildKey)
-            {
-                //return false;
-            }
             return true;
         }
         protected bool DoCheckWindow<T>() where T : CheckerWindow
@@ -689,8 +682,6 @@ namespace CYM
                 BaseFileUtil.EnsureDirectory(SysConst.Path_Resources);
                 BaseFileUtil.EnsureDirectory(SysConst.Path_ResourcesConfig);
                 BaseFileUtil.EnsureDirectory(SysConst.Path_ResourcesTemp);
-                //BaseFileUtil.EnsureDirectory(SysConst.Path_ResourcesText);
-                //BaseFileUtil.EnsureDirectory(SysConst.Path_ResourcesScriptTemplate);
                 BaseFileUtil.EnsureDirectory(SysConst.Path_ResourcesConst);
 
                 BaseFileUtil.EnsureDirectory(SysConst.Path_Funcs);
