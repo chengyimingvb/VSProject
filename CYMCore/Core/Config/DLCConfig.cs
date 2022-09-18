@@ -80,14 +80,11 @@ namespace CYM
             BuildRule.Add(new BuildRuleConfig("Lua", BuildRuleType.Directroy, true));
             BuildRule.Add(new BuildRuleConfig("Language", BuildRuleType.Directroy, true));
             BuildRule.Add(new BuildRuleConfig("Excel", BuildRuleType.Directroy, true));
-            BuildRule.Add(new BuildRuleConfig("Text", BuildRuleType.Directroy, true));
-            BuildRule.Add(new BuildRuleConfig("CSharp", BuildRuleType.Directroy, true));
             //图片资源
             BuildRule.Add(new BuildRuleConfig("Sprite", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("BG", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("Icon", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("Head", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Flag", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("Texture", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("Illustration", BuildRuleType.Directroy));
             //其他资源
@@ -97,8 +94,8 @@ namespace CYM
             BuildRule.Add(new BuildRuleConfig("Music", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("PhysicsMaterial", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("Video", BuildRuleType.Directroy));
-            //Prefab资源
             BuildRule.Add(new BuildRuleConfig("Animator", BuildRuleType.Directroy));
+            //Prefab资源
             BuildRule.Add(new BuildRuleConfig("Prefab", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("Perform", BuildRuleType.Directroy));
             BuildRule.Add(new BuildRuleConfig("System", BuildRuleType.Directroy));
