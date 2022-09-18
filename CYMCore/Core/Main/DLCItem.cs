@@ -153,9 +153,9 @@ namespace CYM
             BuildRuleData.Clear();
             CopyDirectory.Clear();
 
-            foreach (var item in DLCConfig.Config)
+            foreach (var item in DLCConfig.RuntimeConfig)
                 BuildRuleData.Add(item.Clone() as BuildRuleConfig);
-            CopyDirectory.AddRange(DLCConfig.CopyDirectory.ToArray());
+            CopyDirectory.AddRange(DLCConfig.RuntimeCopyDirectory.ToArray());
 
             //计算DLC的跟目录
             AssetsRootPath = CalcAssetRootPath(Name);

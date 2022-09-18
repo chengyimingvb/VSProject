@@ -26,10 +26,15 @@ namespace CYM
     public sealed class DLCConfig : ScriptableObjectConfig<DLCConfig>
     {
         #region private inspector
-        [SerializeField,ReadOnly,HideInInspector] 
-        List<BuildRuleConfig> BuildRule = new List<BuildRuleConfig>();
+        [SerializeField,ReadOnly] 
+        List<BuildRuleConfig> InnerBuildRule = new List<BuildRuleConfig>();
         [SerializeField, ReadOnly, HideInInspector]
         List<string> IgnoreConst = new List<string>();
+        #endregion
+
+        #region inspector
+        [SerializeField]
+        List<BuildRuleConfig> BuildRule = new List<BuildRuleConfig>();
         [SerializeField]
         List<DLCItemConfig> DLC = new List<DLCItemConfig>();
         #endregion
@@ -53,10 +58,11 @@ namespace CYM
         #endregion
 
         #region runtime
-        public HashSet<string> AllDirectory { get; private set; } = new HashSet<string>();
-        public List<BuildRuleConfig> Config { get; private set; } = new List<BuildRuleConfig>();
-        public List<string> CopyDirectory { get; private set; } = new List<string>();
-        public HashSet<string> IgnoreConstSet { get; private set; } = new HashSet<string>();
+        public HashSet<string> RuntimeAllDirectory { get; private set; } = new HashSet<string>();
+        public List<BuildRuleConfig> RuntimeConfig { get; private set; } = new List<BuildRuleConfig>();
+        public List<string> RuntimeCopyDirectory { get; private set; } = new List<string>();
+        public HashSet<string> RuntimeIgnoreConstSet { get; private set; } = new HashSet<string>();
+        public HashSet<string> RuntimeHashBuildRuleConfig { get; private set; } = new HashSet<string>();
         #endregion
 
         #region life
@@ -70,49 +76,54 @@ namespace CYM
             base.OnInited();
             RefreshDLC();
         }
+        [Button(nameof(RecreateDLC))]
         public void RecreateDLC()
         {
-            BuildRule.Clear();
-            CopyDirectory.Clear();
+            InnerBuildRule.Clear();
+            RuntimeCopyDirectory.Clear();
+            RuntimeHashBuildRuleConfig.Clear();
             IgnoreConst.Clear();
             //配置资源
-            BuildRule.Add(new BuildRuleConfig("Config", BuildRuleType.Directroy, true));
-            BuildRule.Add(new BuildRuleConfig("Lua", BuildRuleType.Directroy, true));
-            BuildRule.Add(new BuildRuleConfig("Language", BuildRuleType.Directroy, true));
-            BuildRule.Add(new BuildRuleConfig("Excel", BuildRuleType.Directroy, true));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Config", BuildRuleType.Directroy, true));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Lua", BuildRuleType.Directroy, true));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Language", BuildRuleType.Directroy, true));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Excel", BuildRuleType.Directroy, true));
             //图片资源
-            BuildRule.Add(new BuildRuleConfig("Sprite", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("BG", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Icon", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Head", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Texture", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Illustration", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("BG", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Icon", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Head", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Texture", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Illustration", BuildRuleType.Directroy));
             //其他资源
-            BuildRule.Add(new BuildRuleConfig("Audio", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("AudioMixer", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Material", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Music", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("PhysicsMaterial", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Video", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Animator", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Audio", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Material", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Music", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Video", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Animator", BuildRuleType.Directroy));
             //Prefab资源
-            BuildRule.Add(new BuildRuleConfig("Prefab", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("Perform", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("System", BuildRuleType.Directroy));
-            BuildRule.Add(new BuildRuleConfig("UI", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Prefab", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Perform", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("UI", BuildRuleType.Directroy));
             //场景资源
-            BuildRule.Add(new BuildRuleConfig("Scene", BuildRuleType.File));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Scene", BuildRuleType.File));
+            //添加自定义规则
+            foreach (var item in BuildRule)
+            {
+                AddBuildConfig(InnerBuildRule,item.Clone() as BuildRuleConfig);
+            }
             //忽略的Const
             IgnoreConst.Add("CONFIG_DLCItem");
             IgnoreConst.Add("CONFIG_DLCManifest");
         }
         //刷新DLC
+        [Button(nameof(RefreshDLC))]
         public void RefreshDLC()
         {
-            Config.Clear();
-            AllDirectory.Clear();
-            CopyDirectory.Clear();
-            IgnoreConstSet.Clear();
+            RuntimeConfig.Clear();
+            RuntimeAllDirectory.Clear();
+            RuntimeCopyDirectory.Clear();
+            RuntimeIgnoreConstSet.Clear();
+            RuntimeHashBuildRuleConfig.Clear();
 
             ConfigExtend.Clear();
             ConfigAll.Clear();
@@ -121,8 +132,8 @@ namespace CYM
             EditorAll.Clear();
             EditorInner.Clear();
 
-            foreach (var item in BuildRule)
-                AddBuildConfig(item);
+            foreach (var item in InnerBuildRule)
+                AddBuildConfig(RuntimeConfig,item);
             foreach (var item in IgnoreConst)
                 AddIgnoreConst(item);
 
@@ -156,14 +167,14 @@ namespace CYM
 #if UNITY_EDITOR
             if (!Application.isPlaying)
             {
-                foreach (var item in AllDirectory)
+                foreach (var item in RuntimeAllDirectory)
                 {
                     BaseFileUtil.EnsureDirectory(Path.Combine(SysConst.Path_Bundles, item));
                 }
 
                 foreach (var item in DLC)
                 {
-                    foreach (var dic in AllDirectory)
+                    foreach (var dic in RuntimeAllDirectory)
                     {
                         BaseFileUtil.EnsureDirectory(Path.Combine(SysConst.Path_Dlc, item.Name, dic));
                     }
@@ -171,33 +182,32 @@ namespace CYM
             }
 #endif
         }
-
-        void AddBuildConfig(BuildRuleConfig config)
+        void AddBuildConfig(List<BuildRuleConfig> runtimedata,BuildRuleConfig config)
         {
+            if (RuntimeHashBuildRuleConfig.Contains(config.Name))
+            {
+                CLog.Error($"错误！发现重复的打包规则：{config.Name}");
+                return;
+            }
+            RuntimeHashBuildRuleConfig.Add(config.Name);
+
             BuildRuleConfig data = config.Clone() as BuildRuleConfig;
-            Config.Add(data);
+            runtimedata.Add(data);
             if (data.IsCopyDirectory)
             {
-                CopyDirectory.Add(data.Name);
+                RuntimeCopyDirectory.Add(data.Name);
             }
-            if (!AllDirectory.Contains(data.Name))
-                AllDirectory.Add(data.Name);
+            if (!RuntimeAllDirectory.Contains(data.Name))
+                RuntimeAllDirectory.Add(data.Name);
         }
         void AddIgnoreConst(string name)
         {
-            if (!IgnoreConstSet.Contains(name))
-                IgnoreConstSet.Add(name);
+            if (!RuntimeIgnoreConstSet.Contains(name))
+                RuntimeIgnoreConstSet.Add(name);
         }
-        public bool IsInIgnoreConst(string name)
-        {
-            return IgnoreConstSet.Contains(name);
-        }
-        #endregion
-
-
         public void RemoveDLC(string name)
         {
-            DLC.RemoveAll(x=>x.Name == name);
+            DLC.RemoveAll(x => x.Name == name);
             RefreshDLC();
         }
         public void AddDLC(string name)
@@ -205,5 +215,13 @@ namespace CYM
             DLC.Add(new DLCItemConfig(name));
             RefreshDLC();
         }
+        #endregion
+
+        #region is
+        public bool IsInIgnoreConst(string name)
+        {
+            return RuntimeIgnoreConstSet.Contains(name);
+        }
+        #endregion
     }
 }
