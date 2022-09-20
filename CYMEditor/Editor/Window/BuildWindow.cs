@@ -47,7 +47,7 @@ namespace CYM
         protected static string ButtonStyle = "minibutton";
         protected static string FoldStyle = "AnimItemBackground";
         protected static string SceneButtonStyle = "ButtonMid;";
-        GUIStyle FoldStyleData = new GUIStyle("FoldoutHeader");
+        static GUIStyle FoldStyleData = new GUIStyle("FoldoutHeader");
         #endregion
 
         #region Create config
@@ -80,7 +80,6 @@ namespace CYM
         #region life
         void OnEnable()
         {
-            FoldStyleData.stretchWidth = true;
             RefreshData();
             AssetDatabase.DisallowAutoRefresh();
         }
