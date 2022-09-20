@@ -45,8 +45,9 @@ namespace CYM
         protected static Dictionary<string, string> SceneNames { get; private set; } = new Dictionary<string, string>();
         protected static string VerticalStyle = "HelpBox";
         protected static string ButtonStyle = "minibutton";
-        protected static string FoldStyle = "FoldOutPreDrop;";
+        protected static string FoldStyle = "AnimItemBackground";
         protected static string SceneButtonStyle = "ButtonMid;";
+        GUIStyle FoldStyleData = new GUIStyle("FoldoutHeader");
         #endregion
 
         #region Create config
@@ -79,6 +80,7 @@ namespace CYM
         #region life
         void OnEnable()
         {
+            FoldStyleData.stretchWidth = true;
             RefreshData();
             AssetDatabase.DisallowAutoRefresh();
         }
@@ -111,7 +113,7 @@ namespace CYM
             Present_SubWindow();
             Present_LevelList();
             Present_Other();
-            Present_Key();
+            //Present_Key();
         }
         #endregion
 
@@ -119,7 +121,7 @@ namespace CYM
         public void Present_Info()
         {
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.Ins.FoldInfo = EditorGUILayout.Foldout(LocalConfig.Ins.FoldInfo, "Info", true))
+            if (LocalConfig.Ins.FoldInfo = EditorGUILayout.Foldout(LocalConfig.Ins.FoldInfo, "Info", true, FoldStyleData))
             {
                 EditorGUILayout.LabelField(string.Format("作者:{0}", "CYM"));
                 if (!BuildConfig.LastBuildTime.IsInv())
@@ -137,7 +139,7 @@ namespace CYM
             if (BuildConfig.ShowType == BuildWindowShowType.Dlc)
                 return;
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.Ins.FoldVersion = EditorGUILayout.Foldout(LocalConfig.Ins.FoldVersion, "版本", true))
+            if (LocalConfig.Ins.FoldVersion = EditorGUILayout.Foldout(LocalConfig.Ins.FoldVersion, "版本", true, FoldStyleData))
             {
                 BuildConfig.Platform = (Platform)EditorGUILayout.Popup("目标", (int)BuildConfig.Platform, Enum.GetNames(typeof(Platform)));
                 BuildConfig.Distribution = (Distribution)EditorGUILayout.EnumPopup("发布平台", BuildConfig.Distribution);
@@ -194,7 +196,7 @@ namespace CYM
             if (BuildConfig.ShowType == BuildWindowShowType.Dlc)
                 return;
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.FoldSetting = EditorGUILayout.Foldout(LocalConfig.FoldSetting, "设置", true))
+            if (LocalConfig.FoldSetting = EditorGUILayout.Foldout(LocalConfig.FoldSetting, "设置", true, FoldStyleData))
             {
                 EditorGUILayout.BeginVertical();
                 if (LocalConfig.FoldSettingBuild = EditorGUILayout.Foldout(LocalConfig.FoldSettingBuild, "Build"))
@@ -243,7 +245,7 @@ namespace CYM
         public void Present_DLC()
         {
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.FoldDLC = EditorGUILayout.Foldout(LocalConfig.FoldDLC, "DLC", true))
+            if (LocalConfig.FoldDLC = EditorGUILayout.Foldout(LocalConfig.FoldDLC, "DLC", true, FoldStyleData))
             {
                 EditorGUILayout.BeginVertical();
 
@@ -319,7 +321,7 @@ namespace CYM
             if (BuildConfig.ShowType == BuildWindowShowType.Dlc)
                 return;
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.FoldBuild = EditorGUILayout.Foldout(LocalConfig.FoldBuild, "构建", true))
+            if (LocalConfig.FoldBuild = EditorGUILayout.Foldout(LocalConfig.FoldBuild, "构建", true, FoldStyleData))
             {
                 EditorGUILayout.BeginVertical();
                 foreach (var item in DLCConfig.EditorInner)
@@ -407,7 +409,7 @@ namespace CYM
         public void Present_Explorer()
         {
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.Ins.FoldExplorer = EditorGUILayout.Foldout(LocalConfig.Ins.FoldExplorer, "链接", true))
+            if (LocalConfig.Ins.FoldExplorer = EditorGUILayout.Foldout(LocalConfig.Ins.FoldExplorer, "链接", true, FoldStyleData))
             {
                 EditorGUILayout.BeginHorizontal();
                 if (GUILayout.Button("Persistent"))
@@ -444,7 +446,7 @@ namespace CYM
         public void Present_LevelList()
         {
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.Ins.FoldSceneList = EditorGUILayout.Foldout(LocalConfig.Ins.FoldSceneList, "场景", true))
+            if (LocalConfig.Ins.FoldSceneList = EditorGUILayout.Foldout(LocalConfig.Ins.FoldSceneList, "场景", true, FoldStyleData))
             {
                 if (SceneNames.Count > 5)
                     scrollSceneList = EditorGUILayout.BeginScrollView(scrollSceneList, GUILayout.ExpandHeight(false), GUILayout.MinHeight(300));
@@ -478,7 +480,7 @@ namespace CYM
         public void Present_Other()
         {
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.Ins.FoldOther = EditorGUILayout.Foldout(LocalConfig.Ins.FoldOther, "其他", true))
+            if (LocalConfig.Ins.FoldOther = EditorGUILayout.Foldout(LocalConfig.Ins.FoldOther, "其他", true, FoldStyleData))
             {
                 EditorGUILayout.BeginVertical();
                 if (GUILayout.Button("保存"))
@@ -531,7 +533,7 @@ namespace CYM
             if (BuildConfig.ShowType == BuildWindowShowType.Dlc)
                 return;
             EditorGUILayout.BeginVertical(VerticalStyle);
-            if (LocalConfig.Ins.FoldSubWindow = EditorGUILayout.Foldout(LocalConfig.Ins.FoldSubWindow, "窗口", true))
+            if (LocalConfig.Ins.FoldSubWindow = EditorGUILayout.Foldout(LocalConfig.Ins.FoldSubWindow, "窗口", true, FoldStyleData))
             {
                 if (GUILayout.Button("GUIStyle")) GUIStyleWindow.ShowWindow();
                 else if (GUILayout.Button("ColorPicker")) ColorPickerWindow.ShowWindow();
@@ -646,7 +648,8 @@ namespace CYM
         }
         protected static void RefreshSceneNames()
         {
-            var paths = AssetDatabase.GetAssetPathsFromAssetBundle(SysConst.BN_Scene);
+            var paths = Directory.GetFiles(Path.Combine(Application.dataPath,SysConst.Dir_Art, "Scene"),"*.unity", SearchOption.AllDirectories);
+            //var paths = AssetDatabase.GetAssetPathsFromAssetBundle(SysConst.BN_Scene);
             SceneNames.Clear();
             foreach (var item in paths)
             {
