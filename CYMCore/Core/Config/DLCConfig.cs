@@ -33,10 +33,25 @@ namespace CYM
         #endregion
 
         #region inspector
-        [SerializeField]
-        List<BuildRuleConfig> BuildRule = new List<BuildRuleConfig>();
-        [SerializeField]
-        List<DLCItemConfig> DLC = new List<DLCItemConfig>();
+        //图片资源
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType BG = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Icon = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Head = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Texture = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Illustration = BuildRuleType.Directroy;
+        //其他资源
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Audio = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Material = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Music = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Video = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Animator = BuildRuleType.Directroy;
+        //Prefab资源
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Prefab = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType Perform = BuildRuleType.Directroy;
+        [SerializeField, FoldoutGroup("Inner Rule")] BuildRuleType UI = BuildRuleType.Directroy;
+        //其他
+        [SerializeField, FoldoutGroup("Other")] List<BuildRuleConfig> BuildRule = new List<BuildRuleConfig>();
+        [SerializeField, FoldoutGroup("Other")] List<DLCItemConfig> DLC = new List<DLCItemConfig>();
         #endregion
 
         #region dlc config
@@ -89,21 +104,21 @@ namespace CYM
             AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Language", BuildRuleType.Directroy, true));
             AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Excel", BuildRuleType.Directroy, true));
             //图片资源
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("BG", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Icon", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Head", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Texture", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Illustration", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(BG), BG));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Icon), Icon));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Head), Head));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Texture), Texture));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Illustration), Illustration));
             //其他资源
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Audio", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Material", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Music", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Video", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Animator", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Audio), Audio));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Material), Material));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Music), Music));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Video), Video));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Animator), Animator));
             //Prefab资源
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Prefab", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Perform", BuildRuleType.Directroy));
-            AddBuildConfig(InnerBuildRule, new BuildRuleConfig("UI", BuildRuleType.Directroy));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Prefab), Prefab));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(Perform), Perform));
+            AddBuildConfig(InnerBuildRule, new BuildRuleConfig(nameof(UI), UI));
             //场景资源
             AddBuildConfig(InnerBuildRule, new BuildRuleConfig("Scene", BuildRuleType.File));
             //添加自定义规则
