@@ -80,6 +80,7 @@ namespace CYM
         #region life
         void OnEnable()
         {
+            Ins = this;
             RefreshData();
             AssetDatabase.DisallowAutoRefresh();
         }
