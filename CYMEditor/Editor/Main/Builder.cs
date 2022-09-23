@@ -26,6 +26,12 @@ namespace CYM
         /// </summary>
         static Dictionary<string, string> AllAssets { get; set; } = new Dictionary<string, string>();
         /// <summary>
+        /// 所有的资源
+        /// string1:资源路径
+        /// string2:buildRule 名字(资源所处的顶层文件夹名称)
+        /// </summary>
+        static Dictionary<string, string> AllAssetsBuildRuleName { get; set; } = new Dictionary<string, string>();
+        /// <summary>
         /// 已经决定被打包的Internal资源,防止重复打包
         /// </summary>
         static HashSet<string> PackedAssets_Internal { get; set; } = new HashSet<string>();
@@ -71,6 +77,7 @@ namespace CYM
             Builds.Clear();
             Rules.Clear();
             AllDependencies.Clear();
+            AllAssetsBuildRuleName.Clear();
             AllAssets.Clear();
             AllBundles.Clear();
             AllSharedBundles.Clear();
@@ -109,7 +116,7 @@ namespace CYM
         /// <returns></returns>
 
         // 返回完整的路径作为Bundle名称
-        static Tuple<string, string> GetABNamePath(DLCItem item, string filePath)
+        static Tuple<string, string> GetABNamePath(DLCItem item, BuildRuleConfig data, string filePath)
         {
             string source = Path.Combine(Path.GetDirectoryName(filePath), Path.GetFileNameWithoutExtension(filePath)).Replace('\\', '/');
             return new Tuple<string, string>((item.Name + "_" + source).ToLower(), source.ToLower());
@@ -130,7 +137,6 @@ namespace CYM
         static Tuple<string, string> GetABNameSharedDiscrete(DLCItem item, string path)
         {
             return new Tuple<string, string>((item.Name + "_" + SysConst.BN_Shared.ToLower() + "/"+BaseFileUtil.MD5(path)).ToLower(), SysConst.BN_Shared.ToLower());
-            //return new Tuple<string, string>((item.Name + "_" + Const.BN_Shared.ToLower() + "/" + path).ToLower(), Const.BN_Shared.ToLower());
         }
         static Tuple<string, string> GetABNameShared(DLCItem item)
         {
@@ -187,6 +193,11 @@ namespace CYM
                     {
                         pathData.SourceBundleName = AllAssets[asset];
                     }
+                    if (AllAssetsBuildRuleName.ContainsKey(asset))
+                    {
+                        pathData.BuildRuleName = AllAssetsBuildRuleName[asset];
+                    }
+                    //获得分类名称
                     if (!pathData.SourceBundleName.IsInv())
                     {
                         pathData.Category = GetParentDir(pathData.FullPath.ToLower());
@@ -226,7 +237,25 @@ namespace CYM
                 {
                     if (pathData.SourceBundleName.IsInv())
                         continue;
+                    if (pathData.BuildRuleName.IsInv())
+                        continue;
+                    //获得相应的Bundle名称
+                    //if (pathData.SourceBundleName.StartsWith(SysConst.BN_Scene))
+                    //    newBundleName = SysConst.BN_Scene;
+                    //else
+                    //    newBundleName = pathData.SourceBundleName;
+                    newBundleName = pathData.BuildRuleName;
                     //跳过指定的Bundle资源
+                    if (pathData.BuildRuleName == SysConst.BN_System ||
+                        pathData.BuildRuleName == SysConst.BN_Shared ||
+                        pathData.BuildRuleName == SysConst.BN_Config ||
+                        pathData.BuildRuleName == SysConst.BN_CSharp ||
+                        pathData.BuildRuleName == SysConst.BN_Excel ||
+                        pathData.BuildRuleName == SysConst.BN_Lua ||
+                        pathData.BuildRuleName == SysConst.BN_Text ||
+                        pathData.BuildRuleName == SysConst.BN_Language ||
+                        pathData.BuildRuleName == SysConst.BN_Sprite)
+                        continue;
                     if (pathData.SourceBundleName == SysConst.BN_System ||
                         pathData.SourceBundleName == SysConst.BN_Shared ||
                         pathData.SourceBundleName == SysConst.BN_Config ||
@@ -237,15 +266,8 @@ namespace CYM
                         pathData.SourceBundleName == SysConst.BN_Language ||
                         pathData.SourceBundleName == SysConst.BN_Sprite)
                         continue;
-                    //获得相应的Bundle名称
-                    if (pathData.SourceBundleName.StartsWith(SysConst.BN_Scene))
-                        newBundleName = SysConst.BN_Scene;
-                    else
-                        newBundleName = pathData.SourceBundleName;
                     //保证变量名称有效
                     var fileName = pathData.FileName.Replace(".", "_").Replace("(", "_").Replace(")", "").Trim();
-                    //加上前缀
-                    //fileName = newBundleName.ToUpper() + "_" + fileName;
                     //忽略不需要的Const
                     if (DLCConfig.IsInIgnoreConst(fileName))
                         continue;
@@ -310,6 +332,7 @@ namespace CYM
             Builds.Clear();
             Rules.Clear();
             AllDependencies.Clear();
+            AllAssetsBuildRuleName.Clear();
             AllAssets.Clear();
             AllBundles.Clear();
             AllSharedBundles.Clear();
@@ -551,10 +574,12 @@ namespace CYM
                     AllSharedBundles.Add(bundleName.Item1);
             }
         }
-        private static void AddToAllAssets(string item, Tuple<string, string> bundleName)
+        private static void AddToAllAssets(string item, Tuple<string, string> bundleName,BuildRuleConfig config)
         {
             if (!AllAssets.ContainsKey(item))
                 AllAssets.Add(item, bundleName.Item2);
+            if (!AllAssetsBuildRuleName.ContainsKey(item))
+                AllAssetsBuildRuleName.Add(item,config.Name);
         }
         #endregion
 
@@ -595,7 +620,7 @@ namespace CYM
                         packedAsset.Add(item);
                         AddToPackedAssets(item);
                     }
-                    AddToAllAssets(item, bundleName);
+                    AddToAllAssets(item, bundleName,Config);
                     AddToAllBundles(bundleName);
                 }
 
@@ -623,7 +648,7 @@ namespace CYM
                         EditorUtility.ClearProgressBar();
                         break;
                     }
-                    Tuple<string, string> bundleName = GetABNamePath(DLCItem, item);
+                    Tuple<string, string> bundleName = GetABNamePath(DLCItem, Config, item);
                     if (!IsContainInPackedAssets(item))
                     {
                         AssetBundleBuild build = new AssetBundleBuild();
@@ -632,7 +657,7 @@ namespace CYM
                         Builds.Add(build);
                         AddToPackedAssets(item);
                     }
-                    AddToAllAssets(item, bundleName);
+                    AddToAllAssets(item, bundleName,Config);
                     AddToAllBundles(bundleName);
                 }
             }
@@ -662,7 +687,7 @@ namespace CYM
                         Builds.Add(build);
                         AddToPackedAssets(item);
                     }
-                    AddToAllAssets(item, bundleName);
+                    AddToAllAssets(item, bundleName,Config);
                     AddToAllBundles(bundleName);
                 }
             }

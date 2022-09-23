@@ -57,6 +57,8 @@ namespace CYM
     [Serializable]
     public class AssetPathData
     {
+        //BuildRule名称
+        public string BuildRuleName;
         //原始Bundle名称,比如原先这个资源是放在Icon下面的,在打包过程中被整理到Shared下面
         public string SourceBundleName;
         //完整路径 eg. Assets/CYMCommon/Plugins/CYM/_Bundle/Icon/Logo/Logo_巴西龟.png

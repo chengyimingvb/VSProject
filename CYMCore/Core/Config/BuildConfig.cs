@@ -64,6 +64,8 @@ namespace CYM
         public bool IsWarmupAllShaders = true;
         #endregion
 
+        public static bool IsForceEditorMode { get; set; } = false;
+
         #region Steam
         public uint SteamAppID;
         public string SteamWebAPI;
@@ -128,6 +130,7 @@ namespace CYM
         {
             get
             {
+                if (IsForceEditorMode) return true;
                 if (!Application.isEditor) return false;
                 if (Application.isEditor && IsSimulationEditor) return true;
                 return false;
