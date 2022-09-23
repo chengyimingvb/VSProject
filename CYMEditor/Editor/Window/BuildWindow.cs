@@ -22,15 +22,15 @@ namespace CYM
             BuildConfig.ShowType = BuildWindowShowType.Build;
             Save();
         }
-        [MenuItem("Tools/Dlc  #e")]
-        public static void ShowDLCWindow()
-        {
-            Ins = ShowWindow<BuildWindow>();
-            Ins.minSize = new Vector2(300, 500);
-            RefreshData();
-            BuildConfig.ShowType = BuildWindowShowType.Dlc;
-            Save();
-        }
+        //[MenuItem("Tools/Dlc  #e")]
+        //public static void ShowDLCWindow()
+        //{
+        //    Ins = ShowWindow<BuildWindow>();
+        //    Ins.minSize = new Vector2(300, 500);
+        //    RefreshData();
+        //    BuildConfig.ShowType = BuildWindowShowType.Dlc;
+        //    Save();
+        //}
 
 
         #region prop
@@ -47,7 +47,7 @@ namespace CYM
         protected static string ButtonStyle = "minibutton";
         protected static string FoldStyle = "AnimItemBackground";
         protected static string SceneButtonStyle = "ButtonMid;";
-        static GUIStyle FoldStyleData = new GUIStyle("FoldoutHeader");
+        static GUIStyle FoldStyleData;
         #endregion
 
         #region Create config
@@ -81,6 +81,7 @@ namespace CYM
         void OnEnable()
         {
             Ins = this;
+            RefreshInternalConfig();
             RefreshData();
             AssetDatabase.DisallowAutoRefresh();
         }
@@ -99,7 +100,7 @@ namespace CYM
                 Ins.titleContent = new GUIContent("Build");
                 Ins.Repaint();
             }
-            RefreshInternalConfig();
+            //RefreshInternalConfig();
             CLog.Info("打开开发者界面");
         }
         public void DrawGUI()
@@ -707,6 +708,10 @@ namespace CYM
         {
             if (BuildConfig == null)
                 return;
+            if (FoldStyleData==null)
+            {
+                FoldStyleData = new GUIStyle("FoldoutHeader");
+            }
             scrollPosition = EditorGUILayout.BeginScrollView(scrollPosition);
             DrawGUI();
             EditorGUILayout.EndScrollView();
